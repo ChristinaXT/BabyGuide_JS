@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
 
   def index
    @checklists = Checklist.all
-   render json: @checklists, status 200 
+   render json: @checklists
   end
 
   def new
@@ -21,6 +21,7 @@ class ChecklistsController < ApplicationController
 
  def show
     @checklist = Checklist.find_by(id: params[:id])
+    render json: @checklists
  end
 
  def edit
