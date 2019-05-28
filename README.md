@@ -14,6 +14,22 @@ This Baby Guide app allows a user to create checklists for baby birthday party n
 First you will create an account or login if you already have one. You can create account through Facebook if you like.
 
 You will be directed to the requests page, which will have a list of requests and say whether they have been taken or not.
+-----------------------------------------------------------------------------------------------
+Project Requirements ---
+In this assessment you are going to expand upon your previous Rails project assessment. The goal is to add dynamic features to your previous Rails application that are possible only through JavaScript and a JSON API.
+
+Do not use remote: true in this application.
+
+1) Must translate JSON responses from your Rails app into JavaScript Model Objects using either ES6 class or constructor syntax. The Model Objects must have at least one method on the prototype. (Formatters work really well for this.)
+
+2) Must render at least one index page (index resource - 'list of things') via JavaScript and an Active Model Serialization JSON Backend.
+
+3) Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
+
+4) Your Rails application must dynamically render on the page at least one serialized 'has_many' relationship through JSON using JavaScript.
+
+5) Must use your Rails application to render a form for creating a resource that is submitted dynamically and displayed through JavaScript and JSON without a page refresh.
+
 
 <h3>#License:</h3>
 
