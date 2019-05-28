@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
 
   def index
    @checklists = Checklist.all
-   render json: @checklists
+   render json: @checklists, status 200 
   end
 
   def new
