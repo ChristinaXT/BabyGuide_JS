@@ -38,10 +38,12 @@ function showChecklist(){
        $('#checklist_container').html('')
          let newChecklist = new Checklist(checklist)
          let checklistHtml = newChecklist.newChecklistForm()
-         $('#topic_container').append(topicHtml)
+         $('#_container').append(Html)
      })
   })
 }
+
+//New Form requirement:
 
 //The newChecklistForm prototype template is rendered using this object’s attributes and injected into the page.
 
@@ -60,3 +62,19 @@ $(function() {
     })
   })
 })
+
+function Checklist(checklist) {
+  this.item = checklist.item
+  this.user.id = checklist.user.id
+}
+//Used the object on prototype to format Index Page through JSON
+Checklist.prototype.formatChecklist = function() {
+  return ('
+
+  <tr>
+     <td><a href="/checklists/${this.item}" data-item="{this.item}"
+     class="show_checklists"><h1>${this.item}</h1></a></td>
+
+  </tr>
+  ')
+}
