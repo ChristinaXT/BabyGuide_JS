@@ -43,11 +43,20 @@ function showChecklist(){
   })
 }
 
-//$(function(){
-  //$("form").submit(function(event){
-  //  event.preventDefault();
+//The newChecklistForm prototype template is rendered using this object’s attributes and injected into the page.
 
-      // this debugger should be hit when you click the submit button!
-    //  debugger;
-  //  });
-//});
+$(function() {
+  $('form#new_checklist').on('submit',function (event) {
+    event.preventDefault()
+
+    const values = $(this).serialize()
+    $.post('/checklists', values).done(function(data) {
+      console.log(data)
+    $('#checklist_container').html(" ")
+
+    const newChecklist = new Checklist(data)
+    const htmltoAdd = newChecklist.newChecklistForm()
+    $('#checklist_container').html(htmltoAdd)
+    })
+  })
+})
