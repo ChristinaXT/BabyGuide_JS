@@ -3,12 +3,23 @@ class ChecklistsController < ApplicationController
   before_action :set_checklists, only: [:show, :edit, :update, :destroy]
 
   def index
-   @checklists = Checklist.all
-   render json: @checklists
+    if logged_in?
+       @checklists = current_user.checklists
+       respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @checklists}
+        end
+     else
+       flash[:danger] = "Please sign up or login to see checklists."
+       redirect_to login_path
+    end
   end
 
   def new
-    @checklist = Checklist.new(user_id: current_user.id)
+    @checklist = Checklist.new
+         4.times do
+    @checklist.requests.build
+   end
   end
 
   def create #JSON rep of the checklist can be used without page refresh or redirect
