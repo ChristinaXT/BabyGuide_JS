@@ -52,6 +52,10 @@ class ChecklistsController < ApplicationController
 
     private
 
+  def set_checklists
+    @checklist = Checklist.find(params[:id])
+  end
+
   def checklist_params
     params.require(:checklist).permit(
       :item,
