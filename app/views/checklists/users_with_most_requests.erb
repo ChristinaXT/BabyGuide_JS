@@ -1,0 +1,15 @@
+<h1>Users with Most Requests</h1>
+
+<table class="table">
+
+
+<% Checklist.users_with_most_requests.each do |t| %>
+  <tr>
+   <td><%= t.user.name %></td>
+  </tr>
+
+  <% end %>
+</table>
+ <p><%= link_to "Create a New Request Checklist", new_user_checklist_path(current_user) %></p>
+
+<div>

@@ -3,23 +3,15 @@ class ChecklistsController < ApplicationController
   before_action :set_checklists, only: [:show, :edit, :update, :destroy]
 
   def index
-    if logged_in?
-       @checklists = current_user.checklists
-       respond_to do |format|
-        format.html { render :index }
-        format.json { render json: @checklists}
-        end
-     else
-       flash[:danger] = "Please sign up or login to see checklists."
-       redirect_to login_path
+    @checklists = Checklist.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @checklists}
     end
   end
 
   def new
-    @checklist = Checklist.new
-         4.times do
-    @checklist.requests.build
-   end
+    @checklist = Checklist.new(user_id: current_user.id)
   end
 
   def create #JSON rep of the checklist can be used without page refresh or redirect
@@ -33,8 +25,13 @@ class ChecklistsController < ApplicationController
       end
   end
 
+  #scope method
+  def users_with_most_requests
+    @checklists = Checklist.users_with_most_requests
+  end
+
   def show
-    #@checklist = Checklist.find_by(id: params[:id])
+    @checklist = Checklist.find_by(id: params[:id])
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @checklist}
