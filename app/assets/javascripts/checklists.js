@@ -37,7 +37,7 @@ function showChecklist(){
          $('#checklist_container').html('')
            let newChecklist = new Checklist(checklist)
            let checklistHtml = newChecklist.newChecklistForm()
-           $('#_container').append(Html)
+           $('#checklist_container').append(checklistHtml)
         })
      })
   }
@@ -52,7 +52,7 @@ $(function() {
 
     const values = $(this).serialize()
     $.checklist('/checklists', values).done(function(data) {
-      console.log(data)
+      //console.log(data)
     $('#checklist_container').html(" ")
 
     const newChecklist = new Checklist(data)
@@ -70,7 +70,7 @@ function Checklist(checklist) {
 Checklist.prototype.formatIndex = function() {
   let checklistHtml = '
     <a href="/checklists/${this.item}" data-item="{this.item}"
-       class="show_checklists"><h1>${this.item}</h1>
+       class="show_checklists"><h1>${this.item}</h1></a>
   '
   return checklistHtml
 }
