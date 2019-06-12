@@ -1,8 +1,10 @@
-<h1>Baby Party Guide (BabyGuide) Rails Portfolio app</h1>
+<h1>Baby Party Guide (BabyGuide) Rails and JavaScript app</h1>
+<br>
+<h2>The original app has been modified to include Javascript</h2>
 <br>
 This Baby Guide app allows a user to create checklists for baby birthday party needs and to add requests that need to be completed. The requests can be assigned to other users who wish to help. Users can view each-other's checklists and requests.
 
-<h3>Instructions:</h3> This repository : git@github.com/ChristinaXT/BabyGuide.git
+<h3>Instructions:</h3> This repository : git@github.com/ChristinaXT/BabyGuide_JS.git
 
 1. Fork this repository & clone into it from your terminal
 2. CD into the application

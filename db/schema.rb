@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_003418) do
+ActiveRecord::Schema.define(version: 2019_06_07_175015) do
 
   create_table "checklists", force: :cascade do |t|
     t.string "item"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_003418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  
 
   create_table "requests", force: :cascade do |t|
     t.string "item"

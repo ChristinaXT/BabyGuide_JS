@@ -28,27 +28,28 @@
 
 
  body {
+   background-image: url('app/assets/images/kids-party.jpg');
    background-color: lightblue;
    color: blue;
-   }
+ }
 
  a {
-   color: fuchsia;;
+   color: fuchsia;
  }
  div.container {
    background-color: #FFCFD8;
    display: block;
    margin: 0 auto;
-   width: 85%;
+   width: 50%;
    padding: 5px;
 
  }
  .container li {
    border-left: solid 1px maroon;
    display: inline;
-   margin: 0px;
-   padding: 0px;
-   padding: 0px 5px;
+   margin: 1px;
+   padding: 1px;
+   padding: 1px 5px;
  }
 
  div.content {

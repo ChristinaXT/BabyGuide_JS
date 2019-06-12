@@ -4,9 +4,9 @@ class ChecklistsController < ApplicationController
 
   def index
     @checklists = Checklist.all
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @checklists}
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @checklists}
     end
   end
 
@@ -31,7 +31,7 @@ class ChecklistsController < ApplicationController
   end
 
   def show
-    @checklist = Checklist.find_by(id: params[:id])
+    #@checklist = Checklist.find_by(id: params[:id])
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @checklist}
@@ -57,6 +57,7 @@ class ChecklistsController < ApplicationController
     checklist.destroy
     redirect_to user_path(current_user)
   end
+
 
     private
 

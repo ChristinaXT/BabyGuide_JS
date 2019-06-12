@@ -4,7 +4,7 @@ class ChecklistSerializer < ActiveModel::Serializer
   has_many :requests
   belongs_to :user
 
-  def checklist_finished?
-    object.checklist_finished?
-  end
+  #def checklist_finished?
+    #object.checklist_finished?
+  #end
 end
