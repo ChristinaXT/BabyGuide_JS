@@ -25,4 +25,6 @@ class User < ApplicationRecord
            []
        end
     end
+
+     scope :users_with_most_requests, -> { User.joins(:requests).group('users.id').order('count(users.id)desc').limit(1)}
 end

@@ -68,24 +68,27 @@ function Checklist(checklist) {
 }
 //Used the object on prototype to format Index Page through JSON
 Checklist.prototype.formatIndex = function() {
-  let checklistHtml = '
-    <a href="/checklists/${this.item}" data-item="{this.item}"
-       class="show_checklists"><h1>${this.item}</h1></a>
-  '
-  return checklistHtml
+  return (`
+     <tr>
+     <td><a href="/checklists/${this.item}" data-item="{this.item}"
+        class="show_checklists"><h1>${this.item}</h1></a></td>
+    </tr>
+  `)
+
 }
 
 Checklist.prototype.newChecklistForm = function() {
   let requestsHtml = this.requests.map(request => {
-    return ('
+    return (`
       <div>${request.item}</div>
-    ')
+    `)
   }).join(' ')
-     return('
+     return(`
 
      <h1>Checklist Created</h1>
 
      <tr>
        <td>${this.item}</td><br>
-     ')
+     </tr>
+  `)
 }

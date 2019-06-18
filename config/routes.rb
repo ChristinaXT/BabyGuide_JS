@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     post '/login' => 'session#create'
     get '/auth/facebook/callback' => 'session#create'
     get '/logout' => 'session#destroy'
-    get '/checklists/users_with_most_requests' => 'checklists#users_with_most_requests'
+    get '/users/users_with_most_requests' => 'users#users_with_most_requests'
+    get '/requests/finished_requests' => 'requests#finished_requests'
 
     resources :requests, only: [:create, :destroy, :edit, :update] do
       resources :users, only: [:show]

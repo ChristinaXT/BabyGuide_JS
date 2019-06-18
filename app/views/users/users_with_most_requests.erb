@@ -3,9 +3,9 @@
 <table class="table">
 
 
-<% Checklist.users_with_most_requests.each do |t| %>
+<% @users.users_with_most_requests.each do |user| %>
   <tr>
-   <td><%= t.user.name %></td>
+   <td><%= user.name %></td>
   </tr>
 
   <% end %>

@@ -15,6 +15,11 @@ class UsersController < ApplicationController
       end
    end
 
+   #scope method
+   def users_with_most_requests
+     @users = User.users_with_most_requests
+   end
+
     def show
       @user = User.find_by_id(params[:id])
       @untaken_user_requests = UsersRequest.untaken_by_user(@user)

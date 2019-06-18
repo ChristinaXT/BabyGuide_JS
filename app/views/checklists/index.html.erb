@@ -21,8 +21,12 @@
         </tbody>
     </table>
     <div>
-        <%= link_to "Show the Users with Most Requests", checklists_users_with_most_requests_path(@checklist)%>
-    </div>
+     <%= link_to "Show the Users with Most Requests", users_users_with_most_requests_path(@user)%><br><br>
+   </div>
+
+   <div>
+     <%= link_to "Finished Users Requests", requests_finished_requests_path(@request)%><br>
+   </div>
 
     <p><%= link_to "Create a New Request Checklist", new_user_checklist_path(current_user) %></p>
 

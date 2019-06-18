@@ -26,4 +26,6 @@ class Request < ApplicationRecord
   def finished_klass
     finished ? 'Text-success' : 'Text-danger'
   end
+
+  scope :finished_requests, -> { Request.group('requests.id').where('finished')}
 end
