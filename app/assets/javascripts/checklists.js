@@ -79,7 +79,6 @@ Checklist.prototype.formatIndex = function() {
 }
 
 Checklist.prototype.newChecklistForm = function() {
-  //let requestsHtml = this.requests.map(request){
    let checklistHtml = `
      <h2>Checklist Created</h2>
        <h3>${this.item}</h3><br>
