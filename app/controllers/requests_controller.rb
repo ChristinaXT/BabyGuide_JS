@@ -6,7 +6,11 @@ class RequestsController < ApplicationController
 
   #scope method
   def finished_requests
-  @requests = Request.finished_requests
+    @requests = current_user.requests.finished_requests
+  end
+
+  def unfinished_requests
+    @requests = current_user.requests.unfinished_requests
   end
 
   def new

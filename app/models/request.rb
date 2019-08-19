@@ -28,4 +28,6 @@ class Request < ApplicationRecord
   end
 
   scope :finished_requests, -> { where('finished')}
+  
+  scope :unfinished_requests, -> { where.not('finished')}
 end

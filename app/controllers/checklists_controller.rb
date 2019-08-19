@@ -3,7 +3,8 @@ class ChecklistsController < ApplicationController
   before_action :set_checklists, only: [:show, :edit, :update, :destroy]
 
   def index
-    @checklists = Checklist.all
+    #@checklists = Checklist.all
+    @checklists = Checklist.search(params[:search])
     respond_to do |f|
       f.html { render :index }
       f.json { render json: @checklists}

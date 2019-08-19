@@ -1,0 +1,15 @@
+<h1>Requests that are Unfinished</h1>
+
+<table class="table">
+
+<% @requests.each do |request| %>
+  <tr>
+   <td><%= request.item %></td>
+  </tr>
+
+  <% end %>
+</table>
+
+
+
+ <p><%= link_to "Create a New Request Checklist", new_user_checklist_path(current_user) %></p>

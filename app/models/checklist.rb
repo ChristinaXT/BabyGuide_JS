@@ -10,6 +10,14 @@ class Checklist < ApplicationRecord
 
     accepts_nested_attributes_for :requests
 
-  
+    def self.search(search)
+      if search
+          where('item LIKE ?', "%#{search}%")
+        else
+         Checklist.all
+      end
+    end
+
+
 
 end

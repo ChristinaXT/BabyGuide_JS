@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/logout' => 'session#destroy'
     get '/users/users_with_most_requests' => 'users#users_with_most_requests'
     get '/requests/finished_requests' => 'requests#finished_requests'
+    get 'requests/unfinished_requests' => 'requests#unfinished_requests'
 
     resources :requests, only: [:create, :destroy, :edit, :update] do
       resources :users, only: [:show]
