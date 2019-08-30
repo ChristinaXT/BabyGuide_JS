@@ -8,8 +8,9 @@ $(document).ready(() => {
 //using JQuery, each checklist object is created for each node and rendered to the page.
 
 function indexChecklists(){
-  $('.all_checklists').on('click', function (event){
-    event.preventDefault()
+  $('#all_checklists').on('click', function (event){
+    console.log('clickChecklist')
+    //event.preventDefault()
     history.pushState(null, null, 'checklists')
     //get back promise parsing the data on the response.
     fetch('/checklists.json')
@@ -32,11 +33,12 @@ function showChecklist(){
     event.preventDefault()
     let item = $(this).attr('data-item')
 
-      fetch('/checklists/${item}.json')
+      fetch(`/checklists/${item}.json`)
        .then(resp => resp.json())
        .then(checklist => {
          $('#checklist_container').html('')
            let newChecklist = new Checklist(checklist)
+          // console.log(newChecklist)
            let checklistHtml = newChecklist.newChecklistForm()
            $('#checklist_container').append(checklistHtml)
         })
@@ -53,7 +55,7 @@ $(function() {
 
     const values = $(this).serialize()
     $.post('/checklists', values).done(function(data) {
-      //console.log(data)
+      console.log(data)
     $('#checklist_container').html(" ")
 
     const newChecklist = new Checklist(data)

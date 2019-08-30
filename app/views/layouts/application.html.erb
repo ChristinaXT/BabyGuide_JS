@@ -17,7 +17,7 @@
            <a class="navbar-brand" href="<%= root_url %>"/>Home</a>&nbsp; &nbsp;
           <% if current_user %>
           <a class="navbar-brand" href="<%= user_path(current_user) %>"/>Profile Page</a>&nbsp; &nbsp;
-          <a class="navbar-brand" href="<%= checklists_path %>"/>Checklists</a>&nbsp; &nbsp;
+          <a class="navbar-brand" id="all_checklists"/>Checklists</a>&nbsp; &nbsp;
           <a class="navbar-brand" href="<%= logout_path %>"/>Log Out</a>
           <% end %>
 
@@ -28,7 +28,7 @@
 
     <!-- content -->
     <div class="container"  role="main">
-      
+
       <div id= "checklist_container"
       <%= yield %>
     </div>
