@@ -62,7 +62,7 @@ $(function() {
     })
   })
 })
-//constructor - this is executing the checklist function
+//model object requirement--- constructor - this is executing the checklist function
 function Checklist(checklist) {
   this.item = checklist.item
   this.user_id = checklist.user_id
