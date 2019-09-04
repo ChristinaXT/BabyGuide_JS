@@ -1,5 +1,5 @@
 class RequestSerializer < ActiveModel::Serializer
-  attributes :id, :item, :note, :status
+  attributes :id, :item, :note, :finished
 
   has_many :users_request
   has_many :users, through: :users_request

@@ -23,20 +23,32 @@ class UsersController < ApplicationController
     def show
       @user = User.find_by_id(params[:id])
       @untaken_user_requests = UsersRequest.untaken_by_user(@user)
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @user}
+      end
     end
 
     def edit
       @user = User.find_by_id(params[:id])
+      respond_to do |format|
+        format.html {render :edit}
+        format.json {render json: @user}
+      end
     end
 
     def update
       @user = User.find_by(id: params[:id])
       if @user.update(user_params)
-        redirect_to user_path(@user)
+         respond_to do |format|
+           format.html {redirect_to user_path(@user)}
+           format.json {render json: @user}
+         end
       else
-        render 'edit'
-      end
+          render 'edit'
+      end 
     end
+
 
     private
 

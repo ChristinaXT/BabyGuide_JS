@@ -20,7 +20,11 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
       if @request.save
-        redirect_to checklist_request_path(@request.checklist, @request)
+        #redirect_to checklist_request_path(@request.checklist, @request)
+        respond_to do |format|
+            format.html {redirect_to list_request_path(@request.checklist, @request)}
+            format.json {render json: @request}
+          end
       else
         render 'new'
       end
@@ -29,16 +33,27 @@ class RequestsController < ApplicationController
   def show
     @request = Request.find_by(id: params[:id])
     @user_request = @request.users_request.find{|user_request|user_request.user_id == current_user.id}
+    respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @request}
+      end
   end
 
   def edit
      @request = Request.find_by(id: params[:id])
+     respond_to do |format|
+        format.html {render :edit}
+        format.json {render json: @request}
+      end
   end
 
   def update
     @request = Request.find_by(id: params[:id])
       if @request.update(request_params)
-         redirect_to checklist_request_path(@request.checklist, @request)
+         respond_to do |format|
+           format.html {redirect_to checklist_request_path(@request.checklist, @request)}
+           format.json {render json: @request}
+        end
       else
          render 'edit'
       end
