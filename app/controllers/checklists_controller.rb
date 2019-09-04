@@ -1,6 +1,6 @@
 class ChecklistsController < ApplicationController
   before_action :authorized_to_edit?, only: [:edit, :update]
-  before_action :set_checklists, only: [:show, :edit, :update, :destroy]
+  before_action :set_checklist, only: [:show, :edit, :update, :destroy]
 
   def index
     #@checklists = Checklist.all
@@ -26,8 +26,6 @@ class ChecklistsController < ApplicationController
       end
   end
 
-
-
   def show
     #@checklist = Checklist.find_by(id: params[:id])
     respond_to do |format|
@@ -51,16 +49,16 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-    checklist = Checklist.find_by(id: params[:id])
-    checklist.destroy
+    #@checklist = Checklist.find_by(id: params[:id])
+    @checklist.destroy
     redirect_to user_path(current_user)
   end
 
 
     private
 
-  def set_checklists
-    @checklist = Checklist.find(params[:id])
+  def set_checklist
+    @checklist = Checklist.find_by_id(params[:id])
   end
 
   def checklist_params
