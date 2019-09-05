@@ -9,14 +9,15 @@ $(document).ready(() => {
 function indexChecklists(){
   $('#all_checklists').on('click', function(event) {
     //console.log('clickChecklist')
-  //  event.preventDefault()
+    // event.preventDefault()
     history.pushState(null, null, "checklists")
     //getChecklists()
     //get back promise parsing the data on the response.
+    $('#checklist_container').html('')
     fetch(`/checklists.json`)
-      .then(resp => resp.json())
+      .then(res => res.json())
       .then(checklists => {
-        $('#checklist_container').html('')
+
          console.log(checklists)
 
         checklists.forEach(checklist => {
@@ -32,12 +33,12 @@ function indexChecklists(){
 function showChecklist(){
   $(document).on('click','.show_checklists', function(event){
     event.preventDefault()
+    $('#checklist_container').html('')
     let id = $(this).attr('data-id')
       fetch(`/checklists/${id}.json`)
-      //console.log(checklists)
-       .then(resp => resp.json())
+       .then(res => res.json())
        .then(checklist => {
-         $('#checklist_container').html('')
+
            let newChecklist = new Checklist(checklist)
           // console.log(newChecklist)
            let checklistHtml = newChecklist.newChecklistForm()
@@ -70,7 +71,7 @@ function Checklist(checklist) {
   this.id = checklist.id
   this.item = checklist.item
   this.user_id = checklist.user_id
-  this.requests = checklist.requests
+
 }
 //Used the object on prototype to format Index Page through JSON
 Checklist.prototype.formatIndex = function() {
@@ -86,6 +87,7 @@ Checklist.prototype.newChecklistForm = function() {
    let checklistHtml = `
      <h2>Checklist Created</h2>
        <h4>${this.item}</h4><br>
+
        `
    return checklistHtml
 
