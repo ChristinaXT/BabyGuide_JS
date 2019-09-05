@@ -53,7 +53,7 @@ function showChecklist(){
 $(function() {
   $('form#new_checklist').on('submit',function(event) {
     event.preventDefault()
-
+//post
     const values = $(this).serialize()
     $.post('/checklists', values).done(function(data) {
     //  console.log(data)
@@ -67,8 +67,10 @@ $(function() {
 })
 //model object requirement--- constructor - this is executing the checklist function
 function Checklist(checklist) {
+  this.id = checklist.id
   this.item = checklist.item
   this.user_id = checklist.user_id
+  this.requests = checklist.requests
 }
 //Used the object on prototype to format Index Page through JSON
 Checklist.prototype.formatIndex = function() {
@@ -82,7 +84,7 @@ Checklist.prototype.formatIndex = function() {
 
 Checklist.prototype.newChecklistForm = function() {
    let checklistHtml = `
-     <h3>Checklist Created</h3>
+     <h2>Checklist Created</h2>
        <h4>${this.item}</h4><br>
        `
    return checklistHtml

@@ -1,5 +1,5 @@
 class ChecklistSerializer < ActiveModel::Serializer
-  attributes :id, :item
+  attributes :id, :item, :user_id
 
   has_many :requests
   belongs_to :user
