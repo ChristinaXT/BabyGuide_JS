@@ -23,10 +23,10 @@ class UsersController < ApplicationController
     def show
       @user = User.find_by_id(params[:id])
       @untaken_user_requests = UsersRequest.untaken_by_user(@user)
-      respond_to do |format|
-        format.html {render :show}
-        format.json {render json: @user}
-      end
+      #respond_to do |format|
+        #format.html {render :show}
+        #format.json {render json: @user}
+    #  end
     end
 
     def edit
@@ -40,25 +40,19 @@ class UsersController < ApplicationController
     def update
       @user = User.find_by(id: params[:id])
       if @user.update(user_params)
-         respond_to do |format|
-           format.html {redirect_to user_path(@user)}
-           format.json {render json: @user}
-         end
+         #respond_to do |format|
+          # format.html {redirect_to user_path(@user)}
+           #format.json {render json: @user}
+         #end
       else
           render 'edit'
-      end 
+      end
     end
 
 
     private
 
     def user_params
-      params.require(:user).permit(
-        :name,
-        :email,
-        :password,
-        :password_confirmation,
-        request_ids: []
-      )
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, request_ids: [])
     end
 end

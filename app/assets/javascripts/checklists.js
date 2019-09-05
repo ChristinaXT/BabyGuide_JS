@@ -6,12 +6,12 @@ $(document).ready(() => {
 // using fetch get request indexChecklists(), we get all checklists and send a get request as soon as the page loads.
 //using JQuery, each checklist object is created for each node and rendered to the page.
 
-//event listener
 function indexChecklists(){
-  $('button#all_checklists').on('click', function(event) {
+  $('#all_checklists').on('click', function(event) {
     //console.log('clickChecklist')
-      event.preventDefault();
-     history.pushState(null, null, 'checklists')
+  //  event.preventDefault()
+    history.pushState(null, null, "checklists")
+    //getChecklists()
     //get back promise parsing the data on the response.
     fetch(`/checklists.json`)
       .then(resp => resp.json())
@@ -29,11 +29,11 @@ function indexChecklists(){
   })
 }
 //sends a GET request to the application
-function showChecklist(checklists){
+function showChecklist(){
   $(document).on('click','.show_checklists', function(event){
     event.preventDefault()
-    let item = $(this).attr('data-item')
-      fetch(`/checklists/${item}.json`)
+    let id = $(this).attr('data-id')
+      fetch(`/checklists/${id}.json`)
       //console.log(checklists)
        .then(resp => resp.json())
        .then(checklist => {
@@ -55,36 +55,26 @@ $(function() {
     event.preventDefault()
 
     const values = $(this).serialize()
-    //post requirement
-    $.post('/checklists.json', values).done(function(data) {
+    $.post('/checklists', values).done(function(data) {
     //  console.log(data)
     $('#checklist_container').html(" ")
 
-    const newChecklist = new Checklist(data.checklist);
-    const htmltoAdd = newChecklist.newChecklistForm();
+    const newChecklist = new Checklist(data)
+    const htmltoAdd = newChecklist.newChecklistForm()
     $('#checklist_container').html(htmltoAdd)
     })
   })
 })
 //model object requirement--- constructor - this is executing the checklist function
-//function Checklist(checklist) {
-//  this.item = checklist.item
-//  this.user_id = checklist.user_id
-//}
-class Checklist {
-  constructor(data) {
-    this.item = data.item;
-    this.user_id = data.user_id;
-  }
+function Checklist(checklist) {
+  this.item = checklist.item
+  this.user_id = checklist.user_id
 }
-
-
-
 //Used the object on prototype to format Index Page through JSON
 Checklist.prototype.formatIndex = function() {
    let checklistHtml = `
       <a href="/checklists/${this.item}" data-item="${this.item}"
-       class="show_checklists"><h1>${this.item}</h1></a>
+       class="show_checklists"><h4>${this.item}</h4></a>
       `
       return checklistHtml
 

@@ -67,9 +67,6 @@ class ChecklistsController < ApplicationController
   end
 
   def checklist_params
-    params.require(:checklist).permit(
-      :item,
-      :user_id
-    )
+    params.require(:checklist).permit(:item, :user_id, :requests_attributes => {})
   end
 end

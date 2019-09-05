@@ -1,9 +1,5 @@
 class RequestsController < ApplicationController
 
-  #def index
-  #  @requests = Request.all
-#  end
-
   #scope method
   def finished_requests
     @requests = current_user.requests.finished_requests
@@ -20,7 +16,6 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
       if @request.save
-        #redirect_to checklist_request_path(@request.checklist, @request)
         respond_to do |format|
             format.html {redirect_to list_request_path(@request.checklist, @request)}
             format.json {render json: @request}
@@ -69,12 +64,6 @@ class RequestsController < ApplicationController
    private
 
   def request_params
-      params.require(:request).permit(
-        :item,
-        :note,
-        :checklist_id,
-        :finished,
-        user_ids: []
-      )
+      params.require(:request).permit(:item, :note, :checklist_id, :finished, user_ids: [])
   end
 end
