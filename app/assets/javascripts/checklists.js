@@ -8,16 +8,14 @@ $(document).ready(() => {
 
 function indexChecklists(){
   $('#all_checklists').on('click', function(event) {
-    //console.log('clickChecklist')
     // event.preventDefault()
     history.pushState(null, null, "checklists")
-    //getChecklists()
     //get back promise parsing the data on the response.
-    $('#checklist_container').html('')
-    fetch(`/checklists.json`)
-      .then(res => res.json())
-      .then(checklists => {
 
+    fetch(`/checklists.json`)
+      .then(resp => resp.json())
+      .then(checklists => {
+         $('#checklist_container').html('')
          console.log(checklists)
 
         checklists.forEach(checklist => {
@@ -33,14 +31,13 @@ function indexChecklists(){
 function showChecklist(){
   $(document).on('click','.show_checklists', function(event){
     event.preventDefault()
-    $('#checklist_container').html('')
     let id = $(this).attr('data-id')
-      fetch(`/checklists/${id}.json`)
-       .then(res => res.json())
-       .then(checklist => {
 
+      fetch(`/checklists/${id}.json`)
+       .then(resp => resp.json())
+       .then(checklist => {
+         $('#checklist_container').html('')
            let newChecklist = new Checklist(checklist)
-          // console.log(newChecklist)
            let checklistHtml = newChecklist.newChecklistForm()
            $('#checklist_container').append(checklistHtml)
         })
