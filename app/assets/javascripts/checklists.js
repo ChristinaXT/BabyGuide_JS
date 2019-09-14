@@ -16,7 +16,7 @@ function indexChecklists(){
       .then(resp => resp.json())
       .then(checklists => {
          $('#checklist_container').html('')
-         console.log(checklists)
+        // console.log(checklists)
 
         checklists.forEach(checklist => {
           let newChecklist = new Checklist(checklist)
@@ -31,9 +31,9 @@ function indexChecklists(){
 function showChecklist(){
   $(document).on('click','.show_checklists', function(event){
     event.preventDefault()
-    let id = $(this).attr('data-id')
+    let item = $(this).attr('data-item')
 
-      fetch(`/checklists/${id}.json`)
+      fetch(`/checklists/${item}.json`)
        .then(resp => resp.json())
        .then(checklist => {
          $('#checklist_container').html('')

@@ -10,10 +10,21 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = Request.new(checklist_id: params[:checklist_id])
+    @checklist = Checklist.find(params[:checklist_id])
+    @request = Request.new
+  end
+
+  def show
+    @request = Checklist.find(params[:checklist_id]).requests.find(params[:id])
+    @user_request = @request.users_request.find{|user_request|user_request.user_id == current_user.id}
+    #respond_to do |format|
+        #format.html {render :show}
+        #format.json {render json: @request}
+      #end
   end
 
   def create
+    @checklist = Checklist.find(params[:checklist_id]) #find parent
     @request = Request.new(request_params)
       if @request.save
         respond_to do |format|
@@ -21,16 +32,7 @@ class RequestsController < ApplicationController
             format.json {render json: @request}
           end
       else
-        render 'new'
-      end
-  end
-
-  def show
-    @request = Request.find_by(id: params[:id])
-    @user_request = @request.users_request.find{|user_request|user_request.user_id == current_user.id}
-    respond_to do |format|
-        format.html {render :show}
-        format.json {render json: @request}
+        render 'checklists/show'
       end
   end
 

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
    def create
       @user = User.new(user_params)
       if @user.save
+        flash[:success] = "Hi there!"
         session[:user_id] = @user.id
          session_login(@user)
        else
@@ -29,25 +30,25 @@ class UsersController < ApplicationController
     #  end
     end
 
-    def edit
-      @user = User.find_by_id(params[:id])
-      respond_to do |format|
-        format.html {render :edit}
-        format.json {render json: @user}
-      end
-    end
+    #def edit
+      #@user = User.find_by_id(params[:id])
+    #  respond_to do |format|
+      #  format.html {render :edit}
+      #  format.json {render json: @user}
+    #  end
+    #end
 
-    def update
-      @user = User.find_by(id: params[:id])
-      if @user.update(user_params)
+    #def update
+    #  @user = User.find_by(id: params[:id])
+    #  if @user.update(user_params)
          #respond_to do |format|
           # format.html {redirect_to user_path(@user)}
            #format.json {render json: @user}
          #end
-      else
-          render 'edit'
-      end
-    end
+    #  else
+      #    render 'edit'
+    #  end
+    #end
 
 
     private
