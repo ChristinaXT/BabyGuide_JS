@@ -1,9 +1,10 @@
 class RequestSerializer < ActiveModel::Serializer
-  attributes :id, :item, :note, :finished
+  attributes :id, :item, :note, :finished, :checklist_id
 
   has_many :users_request
   has_many :users, through: :users_request
   belongs_to :checklist
+  delegate :user, to: :checklist
 
   #def status
     #object.status

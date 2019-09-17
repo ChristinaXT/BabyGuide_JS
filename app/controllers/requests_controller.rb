@@ -27,10 +27,7 @@ class RequestsController < ApplicationController
     @checklist = Checklist.find(params[:checklist_id]) #find parent
     @request = Request.new(request_params)
       if @request.save
-        respond_to do |format|
-            format.html {redirect_to list_request_path(@request.checklist, @request)}
-            format.json {render json: @request}
-          end
+        redirect_to checklist_request_path(@checklist, @request)
       else
         render 'checklists/show'
       end
@@ -38,30 +35,26 @@ class RequestsController < ApplicationController
 
   def edit
      @request = Request.find_by(id: params[:id])
-     respond_to do |format|
-        format.html {render :edit}
-        format.json {render json: @request}
-      end
   end
 
-  def update
-    @request = Request.find_by(id: params[:id])
-      if @request.update(request_params)
-         respond_to do |format|
-           format.html {redirect_to checklist_request_path(@request.checklist, @request)}
-           format.json {render json: @request}
-        end
-      else
-         render 'edit'
-      end
-  end
+  #def update
+    #@request = Request.find_by(id: params[:id])
+    #  if @request.update(request_params)
+      #   respond_to do |format|
+        #   format.html {redirect_to checklist_request_path(@request.checklist, @request)}
+        #   format.json {render json: @request}
+      #  end
+    #  else
+    #     render 'edit'
+    #  end
+#  end
 
-  def destroy
-     request = Request.find_by(id: params[:id])
-     @checklist = request.checklist
-     request.destroy
-     redirect_to checklist_path(@checklist)
-  end
+  #def destroy
+     #request = Request.find_by(id: params[:id])
+    # @checklist = request.checklist
+     #request.destroy
+    # redirect_to checklist_path(@checklist)
+#  end
 
    private
 

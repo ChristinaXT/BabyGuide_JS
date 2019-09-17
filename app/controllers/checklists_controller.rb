@@ -1,9 +1,9 @@
 class ChecklistsController < ApplicationController
-  before_action :authorized_to_edit?, only: [:edit, :update]
-  before_action :set_checklist, only: [:show, :edit, :update, :destroy]
+  #before_action :authorized_to_edit?, only: [:edit, :update]
+  before_action :set_checklists, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@checklists = Checklist.all
+    @checklists = Checklist.all
     @checklists = Checklist.search(params[:search])
     respond_to do |f|
       f.html {render :index}
@@ -18,18 +18,15 @@ class ChecklistsController < ApplicationController
   def create #JSON rep of the checklist can be used without page refresh or redirect
     @checklist = Checklist.new(checklist_params)
       if @checklist.save
-        respond_to do |f|
-          f.html {redirect_to user_checklist_path(current_user, @checklist)}
-          f.json {render json: @checklist}
-      end
+        render json: @checklist
+      # redirect_to checklists_path # /checklists/#{@checklist.id}
     else
-        #flash[:notice] = "Your checklist creation was unsuccessful"
-        render 'new'
+      render :'checklists/new'
       end
   end
 
   def show
-    @checklist = Checklist.find_by(id: params[:id])
+    #@checklist = Checklist.find_by(id: params[:id])
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @checklist}
@@ -37,7 +34,7 @@ class ChecklistsController < ApplicationController
   end
 
   def edit
-    @checklist = Checklist.find_by(id: params[:id])
+    @checklist = Checklist.find(params[:id])
   end
 
   def update
@@ -54,7 +51,7 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-    @checklist = Checklist.find_by(id: params[:id])
+  #  @checklist = Checklist.find_by(id: params[:id])
     @checklist.destroy
     redirect_to user_path(current_user)
   end
@@ -62,8 +59,8 @@ class ChecklistsController < ApplicationController
 
     private
 
-  def set_checklist
-    @checklist = Checklist.find_by_id(params[:id])
+  def set_checklists
+    @checklist = Checklist.find(params[:id])
   end
 
   def checklist_params
