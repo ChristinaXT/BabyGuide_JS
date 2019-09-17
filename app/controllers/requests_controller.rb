@@ -10,8 +10,8 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @checklist = Checklist.find(params[:checklist_id])
-    @request = Request.new
+    #@checklist = Checklist.find(params[:checklist_id])
+    @request = Request.new(checklist_id: params[:checklist_id])
   end
 
   def show
@@ -24,41 +24,43 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @checklist = Checklist.find(params[:checklist_id]) #find parent
-    @request = Request.new(request_params)
-      if @request.save
-        redirect_to checklist_request_path(@checklist, @request)
-      else
-        render 'checklists/show'
-      end
+    @request = Request.create(request_params)
+        if @request.save
+            respond_to do |format|
+                format.html {redirect_to checklist_request_path(@request.checklist, @request)}
+                format.json {render json: @request}
+            end
+        else
+            render 'new'
+        end
   end
 
   def edit
      @request = Request.find_by(id: params[:id])
   end
 
-  #def update
-    #@request = Request.find_by(id: params[:id])
-    #  if @request.update(request_params)
-      #   respond_to do |format|
-        #   format.html {redirect_to checklist_request_path(@request.checklist, @request)}
-        #   format.json {render json: @request}
-      #  end
-    #  else
-    #     render 'edit'
-    #  end
-#  end
+  def update
+    @request = Request.find_by(id: params[:id])
+      if @request.update(request_params)
+        respond_to do |format|
+          format.html {redirect_to checklist_request_path(@request.checklist, @request)}
+          format.json {render json: @request}
+        end
+      else
+        render 'edit'
+      end
+  end
 
-  #def destroy
-     #request = Request.find_by(id: params[:id])
-    # @checklist = request.checklist
-     #request.destroy
-    # redirect_to checklist_path(@checklist)
-#  end
+  def destroy
+     request = Request.find_by(id: params[:id])
+    @checklist = request.checklist
+     request.destroy
+    redirect_to checklist_path(@checklist)
+  end
 
    private
 
   def request_params
-      params.require(:request).permit(:item, :note, :checklist_id, :finished, user_ids: [])
+      params.require(:request).permit(:item, :note, :checklist_id, :finished, user_id: [])
   end
 end
