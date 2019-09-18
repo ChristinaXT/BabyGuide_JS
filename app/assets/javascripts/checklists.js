@@ -1,6 +1,7 @@
 $(document).ready(() => {
   indexChecklists()
   showChecklist()
+  sortChecklists()
 })
 
 // using fetch get request indexChecklists(), we get all checklists and send a get request as soon as the page loads.
@@ -27,6 +28,15 @@ function indexChecklists(){
     })
   })
 }
+//refactor with sort function
+//When do we use dot verses # in event listeners?
+function sortChecklists() {
+  $('.sort_data').on('click', function(event) {
+ console.log('click')
+  //  $('#checklist_container').html('')
+  })
+}
+
 //sends a GET request to the application
 function showChecklist(){
   $(document).on('click','.show_checklists', function(event){
@@ -43,6 +53,8 @@ function showChecklist(){
         })
      })
   }
+
+
 
 //New Form requirement:
 
@@ -76,10 +88,13 @@ function Checklist(checklist) {
 //Used the object on prototype to format Index Page through JSON
 Checklist.prototype.formatChecklist = function() {
    return (`
+
      <tr>
       <td><a href="/checklists/${this.id}" data-id="${this.id}" class="show_checklists"><h4>${this.item}</h4></a></td>
        <td><button><a href="/checklists/${this.id}/edit" data-id="${this.id}" class="edit_checklist"> Edit</a></button></td>
       <td><button><a href="/checklists/${this.id}" data-id="${this.id}" class="delete_checklist" data-method="delete">Delete</a></button></td>
+      <br>
+
     </tr>
     `)
 }
