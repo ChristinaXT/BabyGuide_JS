@@ -13,15 +13,16 @@ function indexChecklists(){
     // event.preventDefault()
     history.pushState(null, null, "checklists")
     //get back promise parsing the data on the response.
-
+    //the data from url checklist.json
     fetch(`/checklists.json`)
       .then(resp => resp.json())
       .then(checklists => {
+        //clears out
          $('#checklist_container').html('')
-        // console.log(checklists)
 
+//iteration
         checklists.forEach(checklist => {
-          //variable
+          //variable      =   new class Checklist(argument is the object checklist)
           let newChecklist = new Checklist(checklist)
           let checklistHtml = newChecklist.formatChecklist()
   //Inject the HTML to the body of the page using append
@@ -31,7 +32,7 @@ function indexChecklists(){
   })
 }
 //refactor with sort function
-//When do we use dot verses # in event listeners?
+//When do we use dot verses # in event listeners? -- we use # to access ID and dot (.) to access name of object
 //function sortChecklists() {
 //   $('.sort_data').on('click', function(event) {
 //  console.log('click')
@@ -112,5 +113,6 @@ Checklist.prototype.newChecklistForm = function() {
     <tr>
      <td><strong>Item:</strong> ${this.item}</td></br>
      <td><strong>Requests:</strong><ul>${requestsHtml}</ul></td></br></br>
+    </tr>
   `)
 }
