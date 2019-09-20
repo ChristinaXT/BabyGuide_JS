@@ -1,7 +1,7 @@
 $(document).ready(() => {
   indexChecklists()
   showChecklist()
-  sortChecklists()
+  //sortChecklists()
 })
 
 // using fetch get request indexChecklists(), we get all checklists and send a get request as soon as the page loads.
@@ -9,6 +9,7 @@ $(document).ready(() => {
 //event listener
 function indexChecklists(){
   $('#all_checklists').on('click', function(event) {
+    // note from dalia : when an element on the dom with an id of all_checklists, and it is clicked, run the following function
     // event.preventDefault()
     history.pushState(null, null, "checklists")
     //get back promise parsing the data on the response.
@@ -20,6 +21,7 @@ function indexChecklists(){
         // console.log(checklists)
 
         checklists.forEach(checklist => {
+          //variable
           let newChecklist = new Checklist(checklist)
           let checklistHtml = newChecklist.formatChecklist()
   //Inject the HTML to the body of the page using append
@@ -30,12 +32,12 @@ function indexChecklists(){
 }
 //refactor with sort function
 //When do we use dot verses # in event listeners?
-function sortChecklists() {
-  $('.sort_data').on('click', function(event) {
- console.log('click')
-  //  $('#checklist_container').html('')
-  })
-}
+//function sortChecklists() {
+//   $('.sort_data').on('click', function(event) {
+//  console.log('click')
+//   //  $('#checklist_container').html('')
+//   })
+// }
 
 //sends a GET request to the application
 function showChecklist(){
@@ -53,7 +55,6 @@ function showChecklist(){
         })
      })
   }
-
 
 
 //New Form requirement:
@@ -91,7 +92,7 @@ Checklist.prototype.formatChecklist = function() {
 
      <tr>
       <td><a href="/checklists/${this.id}" data-id="${this.id}" class="show_checklists"><h4>${this.item}</h4></a></td>
-       <td><button><a href="/checklists/${this.id}/edit" data-id="${this.id}" class="edit_checklist"> Edit</a></button></td>
+      <td><button><a href="/checklists/${this.id}/edit" data-id="${this.id}" class="edit_checklist"> Edit</a></button></td>
       <td><button><a href="/checklists/${this.id}" data-id="${this.id}" class="delete_checklist" data-method="delete">Delete</a></button></td>
       <br>
 
