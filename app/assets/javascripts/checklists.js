@@ -1,7 +1,7 @@
 $(document).ready(() => {
   indexChecklists()
   showChecklist()
-  //sortChecklists()
+  sortChecklists()
 })
 
 // using fetch get request indexChecklists(), we get all checklists and send a get request as soon as the page loads.
@@ -20,7 +20,7 @@ function indexChecklists(){
         //clears out
          $('#checklist_container').html('')
 
-//iteration
+      //iteration
         checklists.forEach(checklist => {
           //variable      =   new class Checklist(argument is the object checklist)
           let newChecklist = new Checklist(checklist)
@@ -32,13 +32,34 @@ function indexChecklists(){
   })
 }
 //refactor with sort function
-//When do we use dot verses # in event listeners? -- we use # to access ID and dot (.) to access name of object
-//function sortChecklists() {
-//   $('.sort_data').on('click', function(event) {
-//  console.log('click')
-//   //  $('#checklist_container').html('')
-//   })
-// }
+//When do we use dot verses # in event listeners? -- we use # to access ID and dot (.) to access name of class
+function sortChecklists() {
+   $('.sort_button').on('click', function(event) {
+    console.log('click')
+    event.preventDefault()
+    fetch(`/checklists.json`)
+    .then(resp => resp.json())
+    .then(checklists => {
+       $('#checklist_container').html('')
+      console.log(checklists)
+    checklists.sort(function(a, b) {
+      var itemA = a.item.toUpperCase(); // ignore upper and lowercase
+      var itemB = b.item.toUpperCase(); // ignore upper and lowercase
+      if (itemA < itemB) {
+      return -1;
+      }
+      if (itemA > itemB) {
+      return 1;
+      }
+
+  // items must be equal
+       return 0;
+       });
+       console.log(checklists)
+     })
+   })
+
+ }
 
 //sends a GET request to the application
 function showChecklist(){
