@@ -2,6 +2,8 @@ $(document).ready(() => {
   indexChecklists()
   showChecklist()
   sortChecklists()
+  filterChecklists()
+
 })
 
 // using fetch get request indexChecklists(), we get all checklists and send a get request as soon as the page loads.
@@ -51,15 +53,41 @@ function sortChecklists() {
       if (itemA > itemB) {
       return 1;
       }
-
   // items must be equal
        return 0;
        });
        console.log(checklists)
+ //Added this part to display the sorted data -
+          // iteration
+          //     for each(variable in object) object for which properties are iterated
+       checklists.forEach(checklist => {
+         //statement
+        let newChecklist = new Checklist(checklist)
+        let checklistHtml = newChecklist.formatChecklist()
+        //Inject the HTML to the body of the page using append
+        $('#checklist_container').append(checklistHtml)
+       })
      })
    })
 
  }
+
+ function filterChecklists() {
+    $('.beverages_button').on('click', function(event) {
+      //console.log('click')
+      event.preventDefault()
+      fetch(`/checklists.json`)
+      .then(resp => resp.json())
+      .then(checklists => {
+         $('#checklist_container').html('')
+         //console.log(checklists)
+         const result = checklists.filter(checklist => {
+           // console.log(checklist)
+           checklist.item = beverages
+         });
+  })
+})
+}
 
 //sends a GET request to the application
 function showChecklist(){
