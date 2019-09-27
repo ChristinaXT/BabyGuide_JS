@@ -76,24 +76,21 @@ function sortChecklists() {
     $('.beverages_button').on('click', function(event) {
       //console.log('click')
       event.preventDefault()
+      //fetch the json data
       fetch(`/checklists.json`)
+      //return on promise with response of the json data
       .then(resp => {
         resp.json()
       .then(checklists => {
+        //clears out 
          $('#checklist_container').html('')
          //console.log(checklists)
-         //const beveragesChecklist = checklists.filter(checklist => {
-            //checklist.item == 'beverages';
-           //console.log(beveragesChecklist)
-            //console.log(checklist)
-
-           //debugger;
-           // let newChecklist = new Checklist(checklist)
-           // let checklistHtml = newChecklist.newChecklistForm()
-           // let item = 'beverages'
-           // $('#checklist_container').append(checklistHtml)
-           const beveragesChecklist = checklists.filter(checklist => checklist.item === 'beverages')
+         //filtering out the checklist items that = beverages
+          const beveragesChecklist = checklists.filter(checklist => checklist.item === 'beverages')
+          //iteration over map object checklist to return the key value of the new class object
          .map(checklist => new Checklist(checklist))
+         //iteration with the forEach method executes the provided function once per key/value
+         //for each of the checklist objects that match the value beverages, they will be listed in new form
          .forEach(checklist => $('#checklist_container').html(checklist.newChecklistForm()));
          });
       });
