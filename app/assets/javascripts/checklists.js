@@ -11,7 +11,7 @@ $(document).ready(() => {
 //event listener
 function indexChecklists(){
   $('#all_checklists').on('click', function(event) {
-    // note from dalia : when an element on the dom with an id of all_checklists, and it is clicked, run the following function
+    // when an element on the dom with an id of all_checklists, and it is clicked, run the following function
     // event.preventDefault()
     history.pushState(null, null, "checklists")
     //get back promise parsing the data on the response.
@@ -71,23 +71,36 @@ function sortChecklists() {
    })
 
  }
-
+ //refactor assessment filter function
  function filterChecklists() {
     $('.beverages_button').on('click', function(event) {
       //console.log('click')
       event.preventDefault()
       fetch(`/checklists.json`)
-      .then(resp => resp.json())
+      .then(resp => {
+        resp.json()
       .then(checklists => {
          $('#checklist_container').html('')
          //console.log(checklists)
-         const result = checklists.filter(checklist => {
-           // console.log(checklist)
-           checklist.item = beverages
+         //const beveragesChecklist = checklists.filter(checklist => {
+            //checklist.item == 'beverages';
+           //console.log(beveragesChecklist)
+            //console.log(checklist)
+
+           //debugger;
+           // let newChecklist = new Checklist(checklist)
+           // let checklistHtml = newChecklist.newChecklistForm()
+           // let item = 'beverages'
+           // $('#checklist_container').append(checklistHtml)
+           const beveragesChecklist = checklists.filter(checklist => checklist.item === 'beverages')
+         .map(checklist => new Checklist(checklist))
+         .forEach(checklist => $('#checklist_container').html(checklist.newChecklistForm()));
          });
-  })
-})
-}
+      });
+    })
+  }
+
+
 
 //sends a GET request to the application
 function showChecklist(){
