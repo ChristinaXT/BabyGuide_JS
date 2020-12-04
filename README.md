@@ -13,11 +13,12 @@ This Baby Guide app allows a user to create checklists for baby birthday party n
 5. Run rails s
 6. Locally, you can visit: https://localhost:3000
 
-First you will create an account or login if you already have one. You can create account through Facebook if you like.
-
-You will be directed to the requests page, which will have a list of requests and say whether they have been taken or not.
+First you will create an account or login if you already have one.
+You can create account through Facebook if you like.
+You will be directed to the requests page,
+which will have a list of requests and say whether they have been taken or not.
 -----------------------------------------------------------------------------------------------
-Project Requirements ---
+Project Requirements --- <br>
 In this assessment you are going to expand upon your previous Rails project assessment. The goal is to add dynamic features to your previous Rails application that are possible only through JavaScript and a JSON API.
 
 Do not use remote: true in this application.
@@ -39,10 +40,10 @@ Do not use remote: true in this application.
 <h2>MIT License</h2>
 
 Copyright (c) 2019 Christina
-<img src ="https://imgur.com/88i9ftW"/>
-<img src ="https://imgur.com/kqbkAx5"/>
-<img src ="https://imgur.com/JcpeoYC"/>
-<img src ="https://imgur.com/s0T7jzr"/>
-<img src ="https://imgur.com/bxZhWVA"/>
-<img src ="https://imgur.com/f0ekvdd"/>
-<img src ="https://imgur.com/ANxTMjl"/>
+![img](https://imgur.com/88i9ftW.png)
+![img](https://imgur.com/kqbkAx5.png)
+![img](https://imgur.com/JcpeoYC.png)
+![img](https://imgur.com/s0T7jzr.png)
+![img](https://imgur.com/bxZhWVA.png)
+![img](https://imgur.com/f0ekvdd.png)
+![img](https://imgur.com/ANxTMjl.png)
