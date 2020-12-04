@@ -39,13 +39,10 @@ Do not use remote: true in this application.
 <h2>MIT License</h2>
 
 Copyright (c) 2019 Christina
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+<img src ="https://imgur.com/88i9ftW"/>
+<img src ="https://imgur.com/kqbkAx5"/>
+<img src ="https://imgur.com/JcpeoYC"/>
+<img src ="https://imgur.com/s0T7jzr"/>
+<img src ="https://imgur.com/bxZhWVA"/>
+<img src ="https://imgur.com/f0ekvdd"/>
+<img src ="https://imgur.com/ANxTMjl"/>
