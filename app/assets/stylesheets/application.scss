@@ -29,10 +29,11 @@
 
  body {
    background-color: lightblue;
-   background-image: url("https://data.whicdn.com/images/59148801/large.jpg");
+   background-image: url("https://www.wallpapertip.com/wmimgs/35-358130_cute-balloons-high-resolution-balloon-background.jpg");
+   // background-image: url("../images/balloons.jpg");
    background-position: center;
-   background-repeat: repeat-x;
-   background-size: contain;
+   background-repeat: no-repeat;
+   background-size: cover;
    //height: 30%;
    color: blue;
  }
@@ -43,10 +44,11 @@
  div.container {
    background-color: #FFCFD8;
    display: block;
-   margin: 0 auto;
+   margin: 25px auto;
+   padding: 75px;
+   border-radius: 10px;
    width: 50%;
-   padding: 5px;
-
+   opacity: 0.9;
  }
  .container li {
    border-left: solid 1px maroon;
@@ -67,4 +69,17 @@
  .center {
    text-align: center;
    border: solid 2px blue;
+ }
+
+ .navbar-header {
+   font-size: 1.5rem;
+
+   .navbar-brand {
+     text-decoration: none;
+     transition: all 0.3s ease-in-out;
+
+     &:hover {
+       color: blue;
+     }
+   }
  }
